@@ -45,14 +45,17 @@ const A_Reservation = () => {
         headers, // Spring pageable 처리
       });
       setBbsList(response.data.content || []);
+      console.log("받는 데이터", bbsList);
       setPageSize(response.data.pageSize || 8);
       setTotalCnt(response.data.totalElements);
     } catch (error) {
       console.error("예약 데이터 가져오기 오류:", error);
     }
   };
+  const reservationId = bbsList.id;
+  console.log("예약 아이디", reservationId);
 
-  const handleDelete = async (reservationId) => {
+  const handleDelete = async (id) => {
     // 나한테만 확인을 띄우는 부분
     const isConfirmed = window.confirm("정말로 삭제하시겠습니까?");
 
@@ -65,21 +68,11 @@ const A_Reservation = () => {
     }
 
     try {
-      // 예약 데이터 가져오기
-      const getResponse = await axios.get(
-        `/api/admin/reservation/${reservationId}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-
-      const reservationData = getResponse.data;
+      console.log("받는 아이디", bbsList.id);
 
       // 바로 삭제 진행
       const deleteResponse = await axios.delete(
-        `/api/member/reservation/${reservationId}`,
+        `/api/member/reservation/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -88,7 +81,7 @@ const A_Reservation = () => {
       );
 
       if (deleteResponse.status === 200) {
-        alert(`예약자: ${reservationData.nickName}님의 예약이 삭제되었습니다.`);
+        alert(`예약이 삭제되었습니다.`);
         getBbsList(page); // 삭제 후 목록 새로고침
       } else {
         alert("삭제에 실패하였습니다.");
@@ -126,9 +119,7 @@ const A_Reservation = () => {
             ...item,
             // 삭제 버튼
             actions: item.id ? (
-              <button onClick={() => handleDelete(item.reservationId)}>
-                삭제
-              </button>
+              <button onClick={() => handleDelete(item.id)}>삭제</button>
             ) : null, // 빈 행일 경우 삭제 버튼 없음
           }))}
           columns={columns}
