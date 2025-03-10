@@ -42,7 +42,6 @@ function UserReserv() {
           setPetList(petResponse.data);
 
           if (selectedDate && selectedDepartment) {
-            
             const formatDateToKST = (date) => {
               const kstDate = new Date(date.getTime() + 9 * 60 * 60 * 1000); // UTC → KST 변환
               return kstDate.toISOString().split("T")[0];
@@ -54,7 +53,6 @@ function UserReserv() {
               { headers }
             );
             setTimeSlots(slotResponse.data);
-
           }
         }
       } catch (error) {
@@ -111,9 +109,9 @@ function UserReserv() {
       petId: selectedPetData.id,
       slotId: selectedSlotData.id,
     };
-    console.log("보낸느 데이터",req)
+    console.log("보낸느 데이터", req);
     await axios
-      .post("/api/member/reservation", req, {headers:headers})
+      .post("/api/member/reservation", req, { headers: headers })
       .then((response) => {
         console.log("응답 데이터: ", response.data);
         const reserveId = response.data.id;
@@ -163,13 +161,13 @@ function UserReserv() {
           ) : timeSlots.length > 0 ? (
             timeSlots.map((slot, index) => (
               <TimeButton
-              key={index}
-              disabled={!slot.isAvailable} // isAvailable이 false면 비활성화
-              active={selectedTime === index && slot.isAvailable}
-              onClick={() => slot.isAvailable && setSelectedTime(index)}
-            >
-              {slot.slotTime.slice(0, 5)}
-            </TimeButton>
+                key={index}
+                disabled={!slot.isAvailable} // isAvailable이 false면 비활성화
+                active={selectedTime === index && slot.isAvailable}
+                onClick={() => slot.isAvailable && setSelectedTime(index)}
+              >
+                {slot.slotTime.slice(0, 5)}
+              </TimeButton>
             ))
           ) : (
             <p>예약 가능한 시간이 없습니다.</p>
@@ -285,8 +283,7 @@ const TimeButton = styled.button`
     props.disabled ? "#111" : props.active ? "#fff" : "#000"};
 
   &:hover {
-    background-color: ${(props) =>
-      props.disabled ? "#f4f4f4" : "#111"};
+    background-color: ${(props) => (props.disabled ? "#f4f4f4" : "#111")};
     color: ${(props) => (props.disabled ? "#111" : "#fff")};
   }
 `;

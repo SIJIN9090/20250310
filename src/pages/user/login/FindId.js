@@ -33,7 +33,7 @@ function FindId() {
 
       if (!response.ok) {
         const errorDetails = await response.text(); // 오류 메시지 받기
-        throw new Error(`아이디를 찾을 수 없습니다. ${errorDetails}`);
+        throw new Error(`아이디를 찾을 수 없습니다.`);
       }
       const data = await response.text();
       console.log("Response data: ", data); // 백엔드 응답 확인용 로그
@@ -97,7 +97,7 @@ function FindId() {
             <p>찾은 이메일 - {emailFound} - 입니다</p>
           </FoundEmailSection>
         )}
-                <PwFind>
+        <PwFind>
           <Link to="/findPw">
             <h6>비밀번호찾기 </h6>
           </Link>
@@ -105,8 +105,6 @@ function FindId() {
         <CheckBox>
           <CheckButton onClick={handleFindEmail}>확인</CheckButton>
         </CheckBox>
-
-
       </FindIdSection>
     </FindIdContainer>
   );
@@ -152,7 +150,6 @@ const FindIdSub = styled.p`
 `;
 
 const FindIdSection = styled.div`
-
   max-width: 1280px;
   background-color: #f5f7f9;
   margin: auto;
@@ -222,7 +219,6 @@ const PwFind = styled.div`
   padding: 30px 40px 20px 40px;
 `;
 const CheckBox = styled.div`
-
   width: 450px;
   height: 54px;
   display: flex;
@@ -236,7 +232,7 @@ const CheckBox = styled.div`
 
   color: #fff;
   font-weight: 500;
-  font-size: 17px; 
+  font-size: 17px;
   margin-top: 35px;
   margin-bottom: 100px;
   text-align: center;
@@ -252,8 +248,8 @@ const ErrorSection = styled.div`
   margin-top: 10px;
   font-size: 16px;
 `;
-const CheckButton =styled.button`
+const CheckButton = styled.button`
   width: 450px;
   height: 54px;
-`
+`;
 export default FindId;

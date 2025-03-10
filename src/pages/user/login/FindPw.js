@@ -101,6 +101,7 @@ function FindPassword() {
                 type="text"
                 placeholder="인증번호"
                 value={verificationCode}
+                maxLength={6}
                 onChange={(e) => setVerificationCode(e.target.value)}
               />
               <button onClick={handleVerifyCode}>인증번호 확인</button>
@@ -115,12 +116,14 @@ function FindPassword() {
                 type="password"
                 placeholder="새 비밀번호"
                 value={newPassword}
+                maxLength={13}
                 onChange={(e) => setNewPassword(e.target.value)}
               />
               <input
                 type="password"
                 placeholder="새 비밀번호 확인"
                 value={newPasswordCheck}
+                maxLength={13}
                 onChange={(e) => setNewPasswordCheck(e.target.value)}
               />
             </div>

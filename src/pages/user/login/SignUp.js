@@ -5,9 +5,7 @@ import DaumPostcode from "react-daum-postcode";
 import { useNavigate } from "react-router-dom";
 
 function SignUp() {
-  const [forms, setForms] = useState([
-    { petName: "", breed: "", age: "" },
-  ]);
+  const [forms, setForms] = useState([{ petName: "", breed: "", age: "" }]);
   const [hasPet, setHasPet] = useState(true); // 반려동물 유무 상태 추가
 
   const addForm = () => {
@@ -24,7 +22,6 @@ function SignUp() {
     const value = e.target.value;
     setForms(
       forms.map((form) => (form.id === id ? { ...form, [field]: value } : form))
-      
     );
     console.log("변경된 forms:", forms); // ✅ 상태 업데이트 확인
   };
@@ -39,8 +36,7 @@ function SignUp() {
   const [passwordCheckError, setPasswordCheckError] = useState("");
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
-   const [isLoading, setIsLoading] = useState(false);
-
+  const [isLoading, setIsLoading] = useState(false);
 
   //하이픈 자동
   const [phoneNum, setPhoneNum] = useState("");
@@ -191,8 +187,6 @@ function SignUp() {
     setBirth(e.target.value);
   };
 
-
-
   const handleSubmit = async () => {
     if (passwordError || passwordCheckError) {
       alert("비밀번호가 유효하지 않습니다.");
@@ -235,31 +229,30 @@ function SignUp() {
       birth,
       phoneNum,
       pets: hasPet
-      ? forms.map((form) => ({
-        name: form.petName,  // ✅ 필드명 변경 (petName → name)
-        breed: form.breed,   // ✅ breed는 그대로
-        age: parseInt(form.age, 10)  // ✅ 문자열을 숫자로 변환
-    }))
+        ? forms.map((form) => ({
+            name: form.petName, // ✅ 필드명 변경 (petName → name)
+            breed: form.breed, // ✅ breed는 그대로
+            age: parseInt(form.age, 10), // ✅ 문자열을 숫자로 변환
+          }))
         : [], // hasPet 상태에 따라 pets 정보 포함 여부 결정
-
-      };
-      console.log("보내는데이처:", memberData);
-
-      try {
-        const response = await axios.post("/api/register", memberData);
-        console.log("회원가입 성공:", response.data); // 성공 로그 추가
-        alert("회원가입이 성공적으로 완료되었습니다.");
-  
-        navigate("/signIn");
-      } catch (error) {
-        console.error("회원가입 실패:", error.response); // 오류 로그 수정
-        if (error.response && error.response.data) {
-          alert("회원가입 실패! 다시 확인해주세요"); // 서버에서 받은 오류 메시지 표시
-        } else {
-          alert("회원가입에 실패했습니다. 잠시 후 다시 시도해주세요.");
-        }
-      }
     };
+    console.log("보내는데이처:", memberData);
+
+    try {
+      const response = await axios.post("/api/register", memberData);
+      console.log("회원가입 성공:", response.data); // 성공 로그 추가
+      alert("회원가입이 성공적으로 완료되었습니다.");
+
+      navigate("/signIn");
+    } catch (error) {
+      console.error("회원가입 실패:", error.response); // 오류 로그 수정
+      if (error.response && error.response.data) {
+        alert("회원가입 실패! 다시 확인해주세요"); // 서버에서 받은 오류 메시지 표시
+      } else {
+        alert("회원가입에 실패했습니다. 잠시 후 다시 시도해주세요.");
+      }
+    }
+  };
 
   const [postcode, setPostcode] = useState(""); // 우편번호
   const [address, setAddress] = useState(""); // 우편번호 검색 결과 주소
@@ -325,8 +318,8 @@ function SignUp() {
             </button>
           </Table>
 
-         {/*2.인증*/}
-         <Table>
+          {/*2.인증*/}
+          <Table>
             <tbody>
               <tr>
                 <td className="th_title">
@@ -360,7 +353,7 @@ function SignUp() {
               </tr>
             </tbody>
           </Table>
-          
+
           {/*2.비밀번호*/}
           <Tables>
             <tbody>
@@ -382,9 +375,8 @@ function SignUp() {
             </tbody>
           </Tables>
 
-
-       {/* 3.비밀번호 확인 */}
-       <Table>
+          {/* 3.비밀번호 확인 */}
+          <Table>
             <tbody>
               <tr>
                 <td className="th_title">
@@ -454,7 +446,7 @@ function SignUp() {
           </Table>
 
           {/* 5.이름*/}
-           <Tablelable>
+          <Tablelabel>
             <tbody>
               <tr>
                 <td className="th_title">
@@ -471,10 +463,10 @@ function SignUp() {
                 </td>
               </tr>
             </tbody>
-          </Tablelable>
+          </Tablelabel>
 
-            {/*6.주소*/}
-            <Tabless>
+          {/*6.주소*/}
+          <Tabless>
             <tbody>
               <tr>
                 <td className="th_title">
@@ -498,8 +490,8 @@ function SignUp() {
             </tbody>
           </Tabless>
 
-         {/*6-2.상세주소*/}
-         <TableBox>
+          {/*6-2.상세주소*/}
+          <TableBox>
             <tbody>
               <tr>
                 <td>
@@ -523,7 +515,7 @@ function SignUp() {
             </tbody>
           </TableBox>
           {/*7.생년월일*/}
-          <Tablelable>
+          <Tablelabel>
             <tbody>
               <tr>
                 <td className="th_title">
@@ -540,10 +532,10 @@ function SignUp() {
                 </td>
               </tr>
             </tbody>
-          </Tablelable>
+          </Tablelabel>
 
           {/*8.전화번호*/}
-          <Tablelable>
+          <Tablelabel>
             <tbody>
               <tr>
                 <td className="th_title">
@@ -561,7 +553,7 @@ function SignUp() {
                 </td>
               </tr>
             </tbody>
-          </Tablelable>
+          </Tablelabel>
         </MailBox>
 
         {/*반려동물정보 입력*/}
@@ -574,7 +566,7 @@ function SignUp() {
 
         {/*반려동물정보 입력*/}
         <AnimalBox>
-        {forms.map((form) => (
+          {forms.map((form) => (
             <Formtable key={form.id}>
               {/*동물이름*/}
               <Table>
@@ -598,7 +590,7 @@ function SignUp() {
               </Table>
 
               {/*선택 박스*/}
-            <Tabled>
+              <Tabled>
                 <tbody>
                   <tr>
                     <td className="th_title">
@@ -628,8 +620,8 @@ function SignUp() {
                 </tbody>
               </Tabled>
 
-           {/*동물 나이*/}
-           <Table>
+              {/*동물 나이*/}
+              <Table>
                 <tbody>
                   <tr>
                     <td className="th_title">
@@ -676,7 +668,7 @@ function SignUp() {
               {/*</tr>*/}
             </Formtable>
           ))}
-         <AnimalBoxButton>
+          <AnimalBoxButton>
             <button onClick={addForm}>추가</button>
             <button type="submit" onClick={handleSubmit}>
               회원가입
@@ -823,11 +815,9 @@ const Table = styled.div`
     min-width: 92px;
     font-size: 14px;
     color: #111;
-
   }
 
   .th_form {
-  
   }
 
   .pwdError {
@@ -900,7 +890,7 @@ const TableBox = styled.div`
 `;
 
 //이름
-const Tablelable = styled.div`
+const Tablelabel = styled.div`
   width: 900px;
   display: flex;
   align-items: center;

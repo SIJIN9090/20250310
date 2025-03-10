@@ -56,35 +56,6 @@ function NoticelWrite() {
     }
   };
 
-  // // 게시글 세부 정보 가져오기 (파일 목록 포함)
-  // const getBbsDetail = async () => {
-  //   try {
-  //     const response = await axios.get(`/api/notice/${noticeId}`);
-  //     console.log("[NoticeDetail.js] getBbsDetail() success :D", response.data);
-
-  //     // 서버에서 받아온 파일 목록이 있으면 설정
-  //     if (
-  //       response.data.noticeFiles &&
-  //       Array.isArray(response.data.noticeFiles)
-  //     ) {
-  //       setFiles(response.data.noticeFiles);
-  //     } else {
-  //       setFiles([]); // 파일 목록이 없으면 빈 배열로 설정
-  //     }
-
-  //     setTitle(response.data.title);
-  //     setContent(response.data.content);
-  //   } catch (error) {
-  //     console.log("[NoticeDetail.js] getBbsDetail() error :<", error);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   if (noticeId) {
-  //     getBbsDetail(); // 게시글 세부 정보를 가져옴
-  //   }
-  // }, [noticeId]);
-
   return (
     <Container>
       <ContentWrapper>
@@ -258,8 +229,10 @@ const FileInputWrapper = styled.div`
 
 const BottomBox = styled.div`
   display: flex;
-  justify-content: space-between;
+  width: 100%;
+  justify-content: flex-end;
   margin-top: 20px;
+  margin-bottom: 100px;
 `;
 
 export default NoticelWrite;

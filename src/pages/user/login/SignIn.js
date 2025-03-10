@@ -61,12 +61,7 @@ function SignIn() {
       const errorMessage = err.response?.data
         ? JSON.stringify(err.response?.data)
         : "알 수 없는 오류 발생";
-      alert(
-        "로그인 실패! " +
-          (err.response?.data
-            ? JSON.stringify(err.response?.data)
-            : "알 수 없는 오류 발생")
-      );
+      alert("로그인 실패입니다. 다시 확인해 주세요.  ");
     }
   };
 

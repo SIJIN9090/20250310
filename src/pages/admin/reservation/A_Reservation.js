@@ -15,10 +15,9 @@ const A_Reservation = () => {
   const navigate = useNavigate();
   const [linkValue, setLinkValue] = useState("/a_reservation"); // linkValue 상태 추가
   const token = localStorage.getItem("access_token");
-    const { auth, setAuth } = useContext(AuthContext);
-    const { headers, setHeaders } = useContext(HttpHeadersContext);
+  const { auth, setAuth } = useContext(AuthContext);
+  const { headers, setHeaders } = useContext(HttpHeadersContext);
   let useRole = null;
-  
 
   if (token) {
     try {
@@ -28,7 +27,7 @@ const A_Reservation = () => {
       console.error("토큰 디코딩 오류: ", e);
     }
   }
-  console.log(useRole)
+  console.log(useRole);
 
   const columns = [
     { label: "No", field: "id" },
@@ -42,7 +41,8 @@ const A_Reservation = () => {
   const getBbsList = async (page) => {
     try {
       const response = await axios.get("/api/admin/reservation", {
-        params: { page: page - 1 },headers // Spring pageable 처리
+        params: { page: page - 1 },
+        headers, // Spring pageable 처리
       });
       setBbsList(response.data.content || []);
       setPageSize(response.data.pageSize || 8);
@@ -79,7 +79,7 @@ const A_Reservation = () => {
 
       // 바로 삭제 진행
       const deleteResponse = await axios.delete(
-        `/api/admin/reservation/${reservationId}`,
+        `/api/member/reservation/${reservationId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
