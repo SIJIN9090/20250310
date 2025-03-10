@@ -243,9 +243,9 @@ function Home() {
                 <BoardContentBox key={review.id}>
                   <BoardContentTitle>{review.title}</BoardContentTitle>
                   <BoardContent>{review.content}</BoardContent>
-                  <BoardContent>
+                  <BoardContentCd>
                     {review.createdDate.substring(0, 10)}
-                  </BoardContent>
+                  </BoardContentCd>
                 </BoardContentBox>
               ))}
             </BoardBox>
@@ -271,9 +271,9 @@ function Home() {
                 <BoardContentBox key={notice.id}>
                   <BoardContentTitle>{notice.title}</BoardContentTitle>
                   <BoardContent>{notice.content}</BoardContent>
-                  <BoardContent>
+                  <BoardContentCd>
                     {notice.createdDate.substring(0, 10)}
-                  </BoardContent>
+                  </BoardContentCd>
                 </BoardContentBox>
               ))}
             </BoardBox>
@@ -544,10 +544,10 @@ const BoardContentBox = styled.div`
 const BoardContentTitle = styled.p`
   font-family: "Noto Sans KR", serif;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 20px;
   color: #333;
   margin: 0px;
-  padding-top: 15px;
+  padding-top: 5px;
   padding-left: 15px;
 `;
 const BoardContent = styled.p`
@@ -558,7 +558,20 @@ const BoardContent = styled.p`
   line-height: 24px;
   color: #7c6f6f;
   padding-left: 15px;
+  position: relative;
 `;
+const BoardContentCd = styled.p`
+  font-family: "Noto Sans KR", serif;
+  font-weight: 600;
+  font-size: 12px;
+  margin: 0px;
+  line-height: 24px;
+  color: #7c6f6f;
+  position: relative;
+  bottom: 55px;
+  left: 500px;
+`;
+
 const VideoTitle = styled.div`
   width: 100%;
   max-width: 1920px;
